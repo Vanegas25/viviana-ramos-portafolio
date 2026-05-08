@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viviana Ramos · Psicóloga</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- SweetAlert2 para alertas bonitas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        :root {
+            --sage: #4a6741;
+            --sage-light: #6b8f62;
+            --sage-dark: #2e4228;
+            --cream: #f2ebe0;
+            --cream-dark: #e4d9c8;
+            --stone: #9c8e7e;
+            --text: #161310;
+            --text-muted: #4a4036;
+            --white: #faf8f4;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'DM Sans', system-ui, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--white);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-serif);
+            font-weight: 300;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .section-label {
+            font-size: .7rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 600;
+        }
+
+        .divider-sage {
+            width: 38px;
+            height: 2px;
+            background: var(--sage);
+            margin: 1rem 0;
+        }
+
+        .divider-center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bg-cream {
+            background-color: var(--cream) !important;
+        }
+
+        .bg-sage-dark {
+            background-color: var(--sage-dark) !important;
+        }
+
+        .text-sage {
+            color: var(--sage) !important;
+        }
+
+        .text-muted-custom {
+            color: var(--text-muted) !important;
+        }
+
+        /* NAV */
+        #navbar {
+            background: rgba(250, 248, 244, .96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+            transition: border-color .35s ease;
+        }
+
+        #navbar.scrolled {
+            border-color: var(--cream-dark);
+        }
+
+        .navbar-brand {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--text) !important;
+            letter-spacing: .02em;
+        }
+
+        .navbar-brand span {
+            color: var(--sage);
+        }
+
+        .nav-link {
+            font-size: .85rem;
+            font-weight: 500;
+            color: var(--text-muted) !important;
+            letter-spacing: .03em;
+            transition: color .25s;
+        }
+
+        .nav-link:hover {
+            color: var(--sage) !important;
+        }
+
+        .btn-sage {
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: var(--sage);
+            color: var(--white) !important;
+            border: none;
+            border-radius: 2px;
+            padding: .55rem 1.4rem;
+            transition: background .25s;
+        }
+
+        .btn-sage:hover {
+            background: var(--sage-dark);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: .4rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%234a6741' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* HERO */
+        #inicio {
+            min-height: 100vh;
+            background-color: var(--cream);
+            display: flex;
+            align-items: center;
+            padding-top: 76px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .73rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 600;
+        }
+
+        .hero-badge::before {
+            content: '';
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--sage);
+        }
+
+        .hero-img-wrap {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 4/5;
+            background: var(--cream-dark);
+            overflow: hidden;
+            position: relative;
+            margin-left: auto;
+        }
+
+        .hero-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 45%, rgba(46, 66, 40, .82) 100%);
+        }
+
+        .hero-img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            padding: 1.6rem 1.5rem 1.4rem;
+        }
+
+        .hero-img-caption p {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            font-style: italic;
+            font-weight: 300;
+            color: rgba(250, 248, 244, .92);
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .btn-ghost-link {
+            font-size: .85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color .25s;
+        }
+
+        .btn-ghost-link:hover {
+            color: var(--sage);
+        }
+
+        .btn-ghost-link i {
+            transition: transform .25s;
+        }
+
+        .btn-ghost-link:hover i {
+            transform: translateX(4px);
+        }
+
+        /* SERVICES */
+        .service-card {
+            padding: 1.8rem 1.6rem;
+            border: 1.5px solid var(--cream-dark);
+            background: var(--white);
+            transition: background .35s, border-color .35s, box-shadow .35s, transform .3s;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage), var(--sage-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .35s ease;
+        }
+
+        .service-card:hover {
+            background: var(--cream);
+            border-color: var(--sage-light);
+            box-shadow: 0 8px 28px rgba(74, 103, 65, .10);
+            transform: translateY(-3px);
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .svc-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e8f2e4, #d4e8cd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            transition: background .3s;
+        }
+
+        .service-card:hover .svc-icon-wrap {
+            background: linear-gradient(135deg, var(--sage-light), var(--sage));
+        }
+
+        .svc-icon-wrap svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--sage-dark);
+            transition: stroke .3s;
+        }
+
+        .service-card:hover .svc-icon-wrap svg {
+            stroke: #fff;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-sans);
+            font-size: .83rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: .5rem;
+        }
+
+        .service-card p {
+            font-size: .875rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* ABOUT */
+        .about-img-wrap {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: var(--cream-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-img-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border: 1px solid var(--stone);
+            opacity: .3;
+            z-index: 1;
+        }
+
+        blockquote.sage-quote {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--sage-dark);
+            border-left: 3px solid var(--sage);
+            padding-left: 1.25rem;
+            line-height: 1.55;
+        }
+
+        /* ENFOQUE */
+        .enfoque-item {
+            padding: 1.75rem;
+            border: 1px solid rgba(255, 255, 255, .15);
+            height: 100%;
+        }
+
+        .enfoque-num {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, .18);
+            line-height: 1;
+            margin-bottom: .75rem;
+        }
+
+        .enfoque-item h3 {
+            font-family: var(--font-sans);
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #f0ede8;
+            margin-bottom: .6rem;
+        }
+
+        .enfoque-item p {
+            font-size: .875rem;
+            color: rgba(250, 248, 244, .65);
+            font-weight: 300;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        #enfoque h2 {
+            color: #f0ede8;
+        }
+
+        #enfoque .section-label {
+            color: var(--sage-light);
+        }
+
+        /* ESPACIO SECTION */
+        #espacio {
+            background: var(--white);
+        }
+
+        .espacio-card {
+            padding: 1.8rem 1.6rem;
+            border: 1.5px solid var(--cream-dark);
+            height: 100%;
+            transition: all .35s;
+            position: relative;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .espacio-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage), var(--sage-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .35s ease;
+        }
+
+        .espacio-card:hover {
+            background: var(--cream);
+            border-color: var(--sage-light);
+            box-shadow: 0 8px 28px rgba(74, 103, 65, .10);
+            transform: translateY(-3px);
+        }
+
+        .espacio-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .espacio-card .svc-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e8f2e4, #d4e8cd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            transition: background .3s;
+        }
+
+        .espacio-card:hover .svc-icon-wrap {
+            background: linear-gradient(135deg, var(--sage-light), var(--sage));
+        }
+
+        .espacio-card .svc-icon-wrap svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--sage-dark);
+            transition: stroke .3s;
+        }
+
+        .espacio-card:hover .svc-icon-wrap svg {
+            stroke: #fff;
+        }
+
+        .espacio-card h3 {
+            font-family: var(--font-sans);
+            font-size: .82rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: .5rem;
+        }
+
+        .espacio-card p {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* CONTACTO */
+        .contact-link-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, .75);
+            border: 2px solid transparent;
+            transition: all .25s;
+            margin-bottom: .85rem;
+        }
+
+        .contact-link-card:hover {
+            color: var(--sage-dark);
+            border-color: var(--sage-light);
+            background: var(--white);
+        }
+
+        .contact-link-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-radius: 2px;
+            font-size: 1.2rem;
+        }
+
+        .icon-email {
+            background: #e8f0e4;
+            color: var(--sage);
+        }
+
+        .icon-whatsapp {
+            background: #e0f5d8;
+            color: #1da851;
+        }
+
+        .icon-linkedin {
+            background: #e0ecf8;
+            color: #0a66c2;
+        }
+
+        .contact-link-label {
+            font-size: .7rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .contact-link-val {
+            font-size: .875rem;
+            font-weight: 300;
+        }
+
+        /* FORM */
+        .form-label {
+            font-size: .72rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: .35rem;
+        }
+
+        .form-control,
+        .form-select {
+            font-family: var(--font-sans);
+            font-size: .9rem;
+            font-weight: 400;
+            border-radius: 0;
+            border: 2px solid var(--cream-dark);
+            background: var(--white);
+            color: var(--text);
+            padding: .75rem 1rem;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--sage);
+            box-shadow: none;
+            background: var(--white);
+            color: var(--text);
+        }
+
+        .form-msg {
+            font-size: .875rem;
+            padding: .75rem 1rem;
+            display: none;
+        }
+
+        .form-msg.success {
+            background: #e8f4e0;
+            color: #225a08;
+            display: block;
+            font-weight: 500;
+        }
+
+        .form-msg.error {
+            background: #fceaea;
+            color: #8a1a1a;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--text);
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--cream);
+            font-weight: 300;
+        }
+
+        .footer-links a {
+            font-size: .8rem;
+            color: rgba(250, 248, 244, .55);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color .2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--cream);
+        }
+
+        footer p {
+            font-size: .8rem;
+            color: rgba(250, 248, 244, .5);
+            font-weight: 300;
+        }
+
+        /* ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* LinkedIn badge in hero */
+        .linkedin-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .72rem;
+            letter-spacing: .06em;
+            font-weight: 500;
+            color: #0a66c2;
+            background: #e0ecf8;
+            padding: .35rem .85rem;
+            border-radius: 2px;
+            text-decoration: none;
+            transition: background .2s, color .2s;
+        }
+
+        .linkedin-pill:hover {
+            background: #0a66c2;
+            color: #fff;
+        }
+
+        /* ATTENDANCE BADGES */
+        .attend-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--sage-dark);
+            background: #fff;
+            border: 2px solid var(--sage-light);
+            padding: .5rem 1rem;
+            border-radius: 2px;
+            transition: all .25s;
+        }
+
+        .attend-badge:hover {
+            background: var(--sage);
+            color: #fff;
+            border-color: var(--sage);
+        }
+
+        .attend-badge svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* Loader animation */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top px-3 px-lg-5" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#inicio">Viviana Ramos <span>·</span> Psicóloga</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                <ul class="navbar-nav align-items-lg-center gap-2 gap-lg-3 my-3 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#enfoque">Enfoque</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#espacio">Reflexiones</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-sage" href="#contacto">Agenda tu cita</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 fade-up">
+                    <div class="hero-badge mb-3">Psicóloga</div>
+                    <h1 class="mb-3">Bienestar emocional para una vida más plena</h1>
+                    <p class="text-muted-custom fw-light lh-lg mb-4" style="max-width:440px; font-size:1.02rem;">
+                        Psicóloga general con más de 6 años de experiencia. Acompañamiento emocional, educativo y
+                        terapéutico para niños, jóvenes, adultos y familias.
+                    </p>
+                    <div class="d-flex align-items-center gap-4 flex-wrap mb-4">
+                        <a href="#sobre-mi" class="btn-ghost-link">Conoce más sobre mí <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                    <a href="https://www.linkedin.com/in/viviana-ramos-92929b255" target="_blank" rel="noopener"
+                        class="linkedin-pill">
+                        <i class="bi bi-linkedin"></i> LinkedIn · Viviana Ramos
+                    </a>
+                </div>
+                <div class="col-lg-5 fade-up">
+                    <div class="position-relative d-flex justify-content-end">
+                        <div class="hero-img-wrap">
+                            <div class="img-placeholder">
+                                <img src="imagen/Viviana-Ramos.jpeg" alt="Foto de Viviana Ramos, Psicóloga">
+                            </div>
+                            <div class="hero-img-caption">
+                                <p>Espacios de apoyo para sanar,<br>crecer y reconectar contigo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="py-5 py-lg-6">
+        <div class="container py-4">
+            <div class="text-center mb-5 fade-up">
+                <div class="section-label mb-2">Servicios</div>
+                <h2>¿Cómo puedo ayudarte?</h2>
+                <div class="divider-sage divider-center"></div>
+            </div>
+            <div class="row g-3 fade-up">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M12 2a5 5 0 0 1 5 5c0 2.4-1.6 4.4-3.8 5.3C16.2 13.4 19 16.6 19 21H5c0-4.4 2.8-7.6 5.8-8.7A5 5 0 0 1 12 2z" />
+                                <path d="M8 21v-1a4 4 0 0 1 8 0v1" />
+                            </svg>
+                        </div>
+                        <h3>Neurodesarrollo</h3>
+                        <p>Apoyo integral para niños y jóvenes con TEA, TDAH, dificultades de aprendizaje y otras
+                            condiciones, promoviendo herramientas para su bienestar y desarrollo.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                <line x1="9" y1="9" x2="15" y2="9" />
+                                <line x1="9" y1="13" x2="13" y2="13" />
+                            </svg>
+                        </div>
+                        <h3>Tutorías psicoeducativas</h3>
+                        <p>Espacios de aprendizaje personalizados, seguros y adaptados a las necesidades emocionales y
+                            académicas de cada estudiante.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                                <line x1="6" y1="1" x2="6" y2="4" />
+                                <line x1="10" y1="1" x2="10" y2="4" />
+                                <line x1="14" y1="1" x2="14" y2="4" />
+                            </svg>
+                        </div>
+                        <h3>Manejo del estrés y ansiedad</h3>
+                        <p>Herramientas terapéuticas para comprender, regular y afrontar situaciones de estrés, ansiedad
+                            y sobrecarga emocional.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <h3>Autoestima y confianza</h3>
+                        <p>Acompañamiento para fortalecer la seguridad personal, la autoimagen y el bienestar emocional.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                        </div>
+                        <h3>Relaciones y comunicación</h3>
+                        <p>Orientación para construir vínculos más sanos, fortalecer la comunicación y resolver
+                            conflictos de manera saludable.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                        <h3>Duelo y cambios de vida</h3>
+                        <p>Apoyo emocional durante pérdidas, separaciones, cambios importantes o etapas de transición
+                            personal y familiar.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 1-2-2V9m6 5h10a2 2 0 0 0 2-2V9m0 0H3" />
+                                <circle cx="12" cy="17" r="3" />
+                                <path d="M12 14v-3" />
+                            </svg>
+                        </div>
+                        <h3>Evaluaciones psicológicas</h3>
+                        <p>Evaluaciones completas para contextos educativos, laborales y personales, con enfoque
+                            profesional y ético.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                                <polyline points="10 9 9 9 8 9" />
+                            </svg>
+                        </div>
+                        <h3>Certificados de salud mental</h3>
+                        <p>Valoraciones y certificaciones psicológicas realizadas de manera responsable y confidencial.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3>Terapia individual, pareja y familia</h3>
+                        <p>Espacios terapéuticos adaptados a las necesidades de cada persona, pareja o familia.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h3>Violencia, abuso y trauma</h3>
+                        <p>Acompañamiento psicológico sensible y seguro para personas que han vivido experiencias
+                            difíciles como violencia, abuso o situaciones traumáticas.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                <line x1="9" y1="9" x2="9.01" y2="9" />
+                                <line x1="15" y1="9" x2="15.01" y2="9" />
+                            </svg>
+                        </div>
+                        <h3>Regulación emocional</h3>
+                        <p>Aprender a comprender y expresar emociones de forma saludable y equilibrada.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 8 12 12 14 14" />
+                            </svg>
+                        </div>
+                        <h3>Orientación vocacional</h3>
+                        <p>Acompañamiento para descubrir intereses, habilidades y metas personales o profesionales.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                        </div>
+                        <h3>Crianza positiva para padres</h3>
+                        <p>Apoyo a familias en la comprensión de conductas, límites saludables y fortalecimiento del
+                            vínculo familiar.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                <line x1="8" y1="21" x2="16" y2="21" />
+                                <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                        </div>
+                        <h3>Habilidades sociales y escolar</h3>
+                        <p>Intervención para fortalecer la interacción social, la adaptación y el bienestar en entornos
+                            educativos.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 20h9" />
+                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                            </svg>
+                        </div>
+                        <h3>Desarrollo personal</h3>
+                        <p>Procesos terapéuticos orientados al autoconocimiento, bienestar y crecimiento integral.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi" class="py-5 py-lg-6 bg-cream">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 fade-up">
+                    <div class="about-img-wrap">
+                        <div class="img-placeholder">
+                            <img src="imagen/Viviana-Ramos.jpeg" alt="Foto de Viviana Ramos, Psicóloga">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 fade-up">
+                    <div class="section-label mb-2">Sobre mí</div>
+                    <h2 class="mb-2">Hola, soy Viviana Ramos</h2>
+                    <div class="divider-sage"></div>
+                    <blockquote class="sage-quote my-4">"Creo profundamente que cada persona merece un espacio seguro
+                        donde pueda expresarse, sanar y crecer emocionalmente."</blockquote>
+                    <p class="text-muted-custom fw-light lh-lg mb-3" style="font-size:.97rem;">
+                        Soy <strong style="color:var(--text); font-weight:600;">psicóloga general con más de 6 años de
+                            experiencia profesional</strong>, dedicada al acompañamiento emocional, educativo y
+                        terapéutico de niños, jóvenes, adultos y familias.
+                    </p>
+                    <p class="text-muted-custom fw-light lh-lg mb-3" style="font-size:.97rem;">
+                        Actualmente me encuentro ampliando mi preparación profesional en <strong
+                            style="color:var(--text); font-weight:600;">Family and Human Services en Brigham Young
+                            University–Idaho</strong>, fortaleciendo mis conocimientos en terapia individual, de pareja
+                        y familiar desde un enfoque humano, cercano e integral.
+                    </p>
+                    <p class="text-muted-custom fw-light lh-lg mb-4" style="font-size:.97rem;">
+                        Mi trabajo se basa en la empatía, la escucha activa y el compromiso con el bienestar emocional
+                        de cada persona, ofreciendo procesos terapéuticos personalizados y adaptados a sus necesidades.
+                    </p>
+
+                    <!-- Modalidades de atención -->
+                    <div class="mb-4">
+                        <div class="section-label mb-3">Modalidades de atención</div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <div class="attend-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                                    <line x1="8" y1="21" x2="16" y2="21" />
+                                    <line x1="12" y1="17" x2="12" y2="21" />
+                                </svg>
+                                Virtual
+                            </div>
+                            <div class="attend-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9 22 9 12 15 12 15 22" />
+                                </svg>
+                                Presencial
+                            </div>
+                            <div class="attend-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 8 12 12 14 14" />
+                                </svg>
+                                A domicilio
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <a href="#contacto" class="btn btn-sage py-2 px-4">Agenda una sesión</a>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENFOQUE -->
+    <section id="enfoque" class="py-5 py-lg-6 bg-sage-dark">
+        <div class="container py-4">
+            <div class="mb-5 fade-up">
+                <div class="section-label mb-2">Mi enfoque</div>
+                <h2>Cómo trabajo contigo</h2>
+                <div class="divider-sage" style="background:rgba(255,255,255,.25);"></div>
+            </div>
+            <div class="row g-3 fade-up">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="enfoque-item">
+                        <div class="enfoque-num">01</div>
+                        <h3>Escucha activa</h3>
+                        <p>Cada persona es única. Escucho sin juicios para comprender tu historia desde tu propia
+                            perspectiva.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="enfoque-item">
+                        <div class="enfoque-num">02</div>
+                        <h3>Espacio seguro</h3>
+                        <p>Creo un ambiente de confianza donde puedas expresarte libremente con total confidencialidad.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="enfoque-item">
+                        <div class="enfoque-num">03</div>
+                        <h3>Enfoque humanista</h3>
+                        <p>Me centro en tus fortalezas y recursos internos para potenciar tu crecimiento personal.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="enfoque-item">
+                        <div class="enfoque-num">04</div>
+                        <h3>Online y presencial</h3>
+                        <p>Ofrezco flexibilidad para adaptarme a tus necesidades y estilo de vida actual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UN ESPACIO PARA TI -->
+    <section id="espacio" class="py-5 py-lg-6">
+        <div class="container py-4">
+            <div class="text-center mb-5 fade-up">
+                <div class="section-label mb-2">Reflexiones</div>
+                <h2>Un espacio para ti</h2>
+                <div class="divider-sage divider-center"></div>
+            </div>
+            <div class="row g-4 fade-up">
+                <div class="col-md-6 col-lg-4">
+                    <div class="espacio-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                                <path
+                                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                            </svg>
+                        </div>
+                        <h3>Ser escuchado</h3>
+                        <p>A veces, lo que necesitamos es ser escuchados.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="espacio-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 22V12m0 0C12 6 7 5 7 5s1 5 5 7zm0 0c0-6 5-7 5-7s-1 5-5 7z" />
+                                <circle cx="12" cy="5" r="1" fill="currentColor" stroke="none" />
+                            </svg>
+                        </div>
+                        <h3>Pequeños pasos</h3>
+                        <p>Sanar también comienza con pequeños pasos.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="espacio-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                        <h3>Tu bienestar</h3>
+                        <p>Tu bienestar merece atención y cuidado.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="espacio-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <polyline points="19 12 12 19 5 12" />
+                            </svg>
+                        </div>
+                        <h3>Pedir ayuda</h3>
+                        <p>Pedir ayuda también es un acto de valentía.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="espacio-card">
+                        <div class="svc-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                        </div>
+                        <h3>Tiempo y comprensión</h3>
+                        <p>Cada proceso merece tiempo y comprensión.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="espacio-card d-flex flex-column justify-content-center align-items-center text-center w-100"
+                        style="background: var(--cream); border-color: var(--sage-light);">
+                        <div class="svc-icon-wrap"
+                            style="background: linear-gradient(135deg, var(--sage-light), var(--sage)); margin: 0 auto 1rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" style="stroke:#fff;">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                        </div>
+                        <p class="fw-light mb-3"
+                            style="font-family:var(--font-serif); font-style:italic; font-size:1rem; color:var(--text-muted);">
+                            Cuando estés lista o listo, aquí estaré.</p>
+                        <a href="#contacto" class="btn btn-sage py-2 px-4" style="font-size:.75rem;">Agenda tu cita</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-5 py-lg-6 bg-cream">
+        <div class="container py-4">
+            <div class="row g-5">
+                <div class="col-lg-5 fade-up">
+                    <div class="section-label mb-2">Contacto</div>
+                    <h2 class="mb-2">Agenda tu cita</h2>
+                    <div class="divider-sage"></div>
+                    <p class="text-muted-custom fw-light lh-lg mb-4 mt-2" style="font-size:.97rem;">
+                        Estoy aquí para acompañarte. Escríbeme o contáctame directamente por el medio que prefieras.
+                    </p>
+
+                    <a href="mailto:psic.vivianaramos28@gmail.com" class="contact-link-card">
+                        <div class="contact-link-icon icon-email"><i class="bi bi-envelope"></i></div>
+                        <div>
+                            <span class="contact-link-label">Correo electrónico</span>
+                            <span class="contact-link-val">psic.vivianaramos28@gmail.com</span>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/50761354860?text=Hola%20Viviana%2C%20me%20gustaría%20agendar%20una%20cita."
+                        target="_blank" class="contact-link-card">
+                        <div class="contact-link-icon icon-whatsapp"><i class="bi bi-whatsapp"></i></div>
+                        <div>
+                            <span class="contact-link-label">WhatsApp</span>
+                            <span class="contact-link-val">Escríbeme directamente</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/viviana-ramos-92929b255" target="_blank" rel="noopener"
+                        class="contact-link-card">
+                        <div class="contact-link-icon icon-linkedin"><i class="bi bi-linkedin"></i></div>
+                        <div>
+                            <span class="contact-link-label">LinkedIn</span>
+                            <span class="contact-link-val">Viviana Ramos · Psicóloga</span>
+                        </div>
+                    </a>
+
+                    <p class="text-muted-custom fw-light small mt-2">
+                        <i class="bi bi-geo-alt me-1 text-sage"></i>Altos de San Francisco, La Chorrera, Panamá Oeste.
+                    </p>
+                </div>
+
+                <div class="col-lg-7 fade-up">
+                    <form id="contact-form">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label" for="nombre">Nombre completo</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    placeholder="Tu nombre" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="email">Correo electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="tu@correo.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="telefono">Número de teléfono</label>
+                                <input type="tel" class="form-control" id="telefono" name="telefono"
+                                    placeholder="Ej: 6123-4567" pattern="[0-9\s\-\+]+" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="motivo">Motivo de consulta</label>
+                                <select class="form-select" id="motivo" name="motivo" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option>Ansiedad y estrés</option>
+                                    <option>Autoestima y confianza</option>
+                                    <option>Relaciones y comunicación</option>
+                                    <option>Duelo y cambios de vida</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="mensaje">Mensaje</label>
+                                <textarea class="form-control" id="mensaje" name="mensaje" rows="4"
+                                    placeholder="Cuéntame brevemente cómo puedo ayudarte..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-msg" id="form-msg"></div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-sage py-2 px-4">
+                                    Enviar mensaje <i class="bi bi-arrow-right ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-5 text-center">
+        <div class="footer-brand mb-2">Viviana Ramos · Psicóloga</div>
+        <div class="footer-links d-flex justify-content-center gap-4 mb-3">
+            <a href="#inicio">Inicio</a>
+            <a href="#sobre-mi">Sobre mí</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#contacto">Contacto</a>
+            <a href="https://www.linkedin.com/in/viviana-ramos-92929b255" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-linkedin me-1"></i>LinkedIn
+            </a>
+        </div>
+        <p class="mb-1">© 2026 Viviana Ramos Psicóloga. Todos los derechos reservados.</p>
+        <p class="mb-0">Ciudad de Panamá · Sesiones presenciales y en línea</p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Tu Public Key de la captura de pantalla
+            emailjs.init("NgZCSeCHKfpjvsH7G");
+        })();
+    </script>
+    <script>
+        // Navbar scroll border
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ===== FORMULARIO FUNCIONAL CON EMAILJS =====
+        const contactForm = document.getElementById('contact-form');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Obtener valores
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const motivo = document.getElementById('motivo').value;
+            const mensaje = document.getElementById('mensaje').value.trim();
+
+            // Validaciones
+            if (!nombre || !email || !telefono || !motivo || !mensaje) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Campos incompletos',
+                    text: 'Por favor, completa todos los campos obligatorios.',
+                    confirmButtonColor: '#4a6741',
+                    background: '#faf8f4'
+                });
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Correo inválido',
+                    text: 'Por favor, ingresa un correo electrónico válido.',
+                    confirmButtonColor: '#4a6741',
+                    background: '#faf8f4'
+                });
+                return;
+            }
+
+            // Mostrar loading en el botón
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-radius:50%; border-top-color:transparent; animation: spin 0.6s linear infinite; margin-right:8px;"></span> Enviando...';
+
+            // Definir los parámetros para la plantilla de EmailJS
+            // Asegúrate que estos nombres coincidan con los {{llaves}} de tu plantilla
+            const templateParams = {
+                name: nombre,
+                email: email,
+                telefono: telefono,
+                motivo: motivo,
+                message: mensaje
+            };
+
+            try {
+                // ENVIAR CON EMAILJS
+                // IMPORTANTE: Reemplaza 'service_xxxx' y 'template_xxxx' con tus IDs reales
+                const response = await emailjs.send('service_m5ib9rs', 'template_ye503rl', templateParams);
+
+                if (response.status === 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Mensaje enviado!',
+                        html: 'Gracias por contactarme.<br><strong>Te responderé en menos de 24 horas.</strong>',
+                        confirmButtonColor: '#4a6741',
+                        background: '#faf8f4'
+                    });
+                    contactForm.reset();
+                }
+            } catch (error) {
+                console.error('Error de EmailJS:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al enviar',
+                    html: 'Hubo un problema. Puedes escribirme directamente a:<br><strong>psic.vivianaramos28@gmail.com</strong>',
+                    confirmButtonColor: '#4a6741',
+                    background: '#faf8f4'
+                });
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
